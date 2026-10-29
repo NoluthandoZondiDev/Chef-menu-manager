@@ -8,7 +8,7 @@
 export const parsePrice = (priceText) =>
   Number(String(priceText).trim().replace(',', '.'));
 
-export const validateDish = ({ dishName, description, price }) => {
+export const validateDish = ({ dishName, description, price }, otherDishNames = []) => {
   const errors = {};
 
   // the dish name: required, and kept a reasonable length
@@ -16,8 +16,13 @@ export const validateDish = ({ dishName, description, price }) => {
     errors.dishName = 'Please enter a dish name.';
   } else if (dishName.trim().length < 2) {
     errors.dishName = 'Dish name must be at least 2 characters.';
-  } else if (dishName.trim().length > 40) {
+   } else if (dishName.trim().length > 40) {
     errors.dishName = 'Dish name must be 40 characters or less.';
+  } else if (
+    // compare in lowercase so "bobotie" and "Bobotie" count as the same dish
+    otherDishNames.some((name) => name.trim().toLowerCase() === dishName.trim().toLowerCase())
+  ) {
+    errors.dishName = 'That dish is already on the menu.';
   }
 
   // the description: required, short enough to fit nicely on the list
