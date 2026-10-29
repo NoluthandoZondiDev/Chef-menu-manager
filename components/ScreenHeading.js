@@ -1,7 +1,7 @@
 // Noluthando Zondi ST10531705 MAST5112 POE Part 3
 // components/ScreenHeading.js
-// the uppercase heading + champagne underline that every screen had
-// copy and pasted from Part 2 - now it's written once and reused
+// the uppercase heading + champagne underline that every screen I
+// copy and pasted it from Part 2 - now it's written once and reused
 
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';

@@ -1,6 +1,6 @@
 // Noluthando Zondi ST10531705 MAST5112 POE Part 3
 // components/PrimaryButton.js
-// one button for the whole app. 'primary' = lavender fill (Save/Update),
+// the one button for the whole app. 'primary' = lavender fill (Save/Update),
 // 'danger' = dusty-rose outline (Delete)
 
 import React from 'react';
