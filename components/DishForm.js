@@ -80,9 +80,8 @@ export default function DishForm({
         onChangeText={setDescription}
         placeholder="Short description of the dish"
         multiline
-        error={errors.description}
-      >
-      </FormField>
+           error={errors.description}
+   />
 
       {/* course - Picker instead of free text so it can't be typed wrong */}
       <FormField label="Course">
