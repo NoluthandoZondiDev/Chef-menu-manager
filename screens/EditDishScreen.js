@@ -1,4 +1,4 @@
-// Noluthando Zondi ST10531705 MAST5112 POE Part 3s
+// Noluthando Zondi ST10531705 MAST5112 POE Part 3
 // screens/EditDishScreen.js
 // "EDIT DISH" - same DishForm as Add, but pre added with the dish
 // I tapped. has UPDATE and DELETE (the delete will ask "are you sure" first)
