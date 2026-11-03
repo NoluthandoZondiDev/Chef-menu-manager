@@ -40,7 +40,7 @@ export default function App() {
     loadMenu();
   }, []);
 
-  // runs every time the menu changes: save it
+  // this runs every time the menu changes: save it
   useEffect(() => {
     if (!isLoaded) return; // don't save before loading has finished
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(menuItems)).catch((error) =>
@@ -49,15 +49,15 @@ export default function App() {
   }, [menuItems, isLoaded]);
 
   const addMenuItem = (newItem) => {
-    // giving each dish an id based on the timestamp so FlatList has
+    // this will give each dish an id based on the timestamp so FlatList has
     // something unique to key off
     const itemWithId = { ...newItem, id: Date.now().toString() };
 
-    // (prevItems) => [...] is safer if updates happen quickly
+    // (prevItems) => [...] is safer if updates happen very fast
     setMenuItems((prevItems) => [...prevItems, itemWithId]);
   };
 
-  // find the dish with this id and swap in the new info (keeps its id)
+  // it will find the dish with this id and swap in the new info (keeps its id)
   const updateMenuItem = (id, updatedInfo) => {
     setMenuItems((prevItems) =>
       prevItems.map((item) => (item.id === id ? { ...item, ...updatedInfo } : item))
