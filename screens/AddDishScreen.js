@@ -1,6 +1,6 @@
 // Noluthando Zondi ST10531705 MAST5112 POE Part 3
 // screens/AddDishScreen.js
-// "ADD A DISH" has 200 lines in Part 2, now the form lives in
+// "ADD A DISH" - had 200 lines in my Part 2, now the form lives in
 // DishForm so this screen just says what happens when it's saved
 
 import React from 'react';
@@ -16,21 +16,21 @@ export default function AddDishScreen({ navigation, menuItems, addMenuItem }) {
   const handleSubmit = (newDish) => {
     addMenuItem(newDish);
 
-    // success popup, then back to Home where the new dish will show
+    // here is the success popup, then back to Home where the new dish will show
     Alert.alert('Dish added', `"${newDish.dishName}" was added to the menu.`, [
       { text: 'OK', onPress: goHome },
     ]);
   };
 
   return (
-    // keeps the form from getting hidden behind the keyboard
+    // this keeps the form from getting hidden behind the keyboard
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <SafeAreaView style={styles.container}>
         {/* "handled" lets buttons work while the keyboard is open,
-            on drag hides the keyboard when I scroll */}
+            on-drag hides the keyboard when I scroll */}
         <ScrollView
           contentContainerStyle={styles.content}
           keyboardShouldPersistTaps="handled"
