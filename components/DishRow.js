@@ -1,19 +1,21 @@
 // Noluthando Zondi ST10531705 MAST5112 POE Part 3
 // components/DishRow.js
-// one row on the menu list. tapping it will open the Edit screen
-// (the screen decides what tapping does, the row just reports the tap)
+// one row on the menu list. tapping it reports the tap to the screen
+// (the screen decides what tapping does: Home opens Edit, the
+// suggestions list fills the Add form)
 
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { colors, fonts } from '../theme/colors';
 import { formatPrice } from '../utils/formatPrice';
 
-export default function DishRow({ dish, onPress }) {
+// actionLabel is only for screen readers, it defaults to "Edit" so Home is unchanged
+export default function DishRow({ dish, onPress, actionLabel = 'Edit' }) {
   return (
     <TouchableOpacity
       style={styles.row}
       onPress={onPress}
-      accessibilityLabel={`Edit ${dish.dishName}`}
+      accessibilityLabel={`${actionLabel} ${dish.dishName}`}
     >
       <View style={styles.rowText}>
         <Text style={styles.dishName}>{dish.dishName}</Text>
