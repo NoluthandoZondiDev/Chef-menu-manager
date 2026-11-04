@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from './screens/HomeScreen';
 import AddDishScreen from './screens/AddDishScreen';
 import EditDishScreen from './screens/EditDishScreen';
+import StatsScreen from './screens/StatsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -101,6 +102,10 @@ export default function App() {
             />
           )}
         </Stack.Screen>
+
+                   <Stack.Screen name="Stats">
+             {(props) => <StatsScreen {...props} menuItems={menuItems} />}
+           </Stack.Screen>
 
       </Stack.Navigator>
     </NavigationContainer>
