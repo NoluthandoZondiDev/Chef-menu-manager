@@ -34,6 +34,15 @@ export default function HomeScreen({ navigation, menuItems }) {
     <SafeAreaView style={styles.container}>
       <ScreenHeading title="TODAY'S MENU" />
 
+               {/* small link in the top right that opens the Statistics screen */}
+         <TouchableOpacity
+           style={styles.statsLink}
+           onPress={() => navigation.navigate('Stats')}
+           accessibilityLabel="Open menu statistics"
+         >
+           <Text style={styles.statsLinkText}>STATS</Text>
+         </TouchableOpacity>
+
       {/* nothing to search yet if the menu is empty, so hide these */}
       {menuItems.length > 0 && (
         <>
@@ -118,4 +127,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   addButtonText: { fontSize: 28, color: '#FFFFFF', marginTop: -2 },
+
+       statsLink: { position: 'absolute', top: 36, right: 16 },
+     statsLinkText: { fontFamily: fonts.body, fontSize: 12, letterSpacing: 1.5, color: colors.text, textDecorationLine: 'underline' },
 });
