@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from './screens/HomeScreen';
 import AddDishScreen from './screens/AddDishScreen';
 import EditDishScreen from './screens/EditDishScreen';
+import LogoSplash from './components/LogoSplash';
 import StatsScreen from './screens/StatsScreen';
 
 const Stack = createNativeStackNavigator();
@@ -25,6 +26,13 @@ export default function App() {
   // without this, the app would save an empty [] over my real menu
   // before it had a chance to load. that would be a disaster
   const [isLoaded, setIsLoaded] = useState(false);
+
+       // keeps the logo on screen for 5 seconds, even if the menu loads faster
+     const [showSplash, setShowSplash] = useState(true);
+     useEffect(() => {
+       const splashTimer = setTimeout(() => setShowSplash(false), 5500);
+       return () => clearTimeout(splashTimer); // tidy up if the app closes early
+     }, []);
 
   // runs once when the app opens: load the saved menu
   useEffect(() => {
@@ -70,9 +78,9 @@ export default function App() {
     setMenuItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
-  // wait for the saved menu before showing anything, so Home never
-  // flashes "No dishes yet" for a split second
-  if (!isLoaded) return null;
+    // show the logo until the saved menu has loaded AND the 2 seconds are up,
+   // so Home never flashes "No dishes yet" for a split second
+   if (!isLoaded || showSplash) return <LogoSplash />;
 
   return (
     <NavigationContainer>
