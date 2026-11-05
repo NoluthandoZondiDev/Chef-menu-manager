@@ -32,16 +32,17 @@ export default function HomeScreen({ navigation, menuItems }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScreenHeading title="TODAY'S MENU" />
-
-               {/* small link in the top right that opens the Statistics screen */}
-         <TouchableOpacity
-           style={styles.statsLink}
-           onPress={() => navigation.navigate('Stats')}
-           accessibilityLabel="Open menu statistics"
-         >
-           <Text style={styles.statsLinkText}>STATS</Text>
-         </TouchableOpacity>
+      {/* heading on the left, STATS link on the right, same row */}
+      <View style={styles.headerRow}>
+        <ScreenHeading title="TODAY'S MENU" />
+        <TouchableOpacity
+          style={styles.statsLink}
+          onPress={() => navigation.navigate('Stats')}
+          accessibilityLabel="Open menu statistics"
+        >
+          <Text style={styles.statsLinkText}>STATS</Text>
+        </TouchableOpacity>
+      </View>
 
       {/* nothing to search yet if the menu is empty, so hide these */}
       {menuItems.length > 0 && (
@@ -105,12 +106,23 @@ export default function HomeScreen({ navigation, menuItems }) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background, padding: 16 },
 
+  headerRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  statsLink: { padding: 8 }, // extra padding = bigger area to tap
+  statsLinkText: {
+    fontFamily: fonts.body,
+    fontSize: 14,
+    letterSpacing: 1.5,
+    color: colors.text,
+    textDecorationLine: 'underline',
+  },
+
   messageBox: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 40 },
   messageText: { fontFamily: fonts.body, fontSize: 16, color: colors.secondaryText, textAlign: 'center' },
   clearLink: { fontFamily: fonts.body, fontSize: 14, color: colors.text, marginTop: 12, textDecorationLine: 'underline' },
 
-  footer: { borderTopWidth: 1, borderTopColor: colors.divider, paddingTop: 10, marginTop: 4, marginBottom: 16 },
-  footerText: { fontFamily: fonts.body, fontSize: 13, color: colors.secondaryText },
+  // bigger and darker than before so the dish count is easy to read
+  footer: { borderTopWidth: 1, borderTopColor: colors.divider, paddingTop: 12, marginTop: 4, marginBottom: 16 },
+  footerText: { fontFamily: fonts.body, fontSize: 16, color: colors.text },
 
   addButton: {
     position: 'absolute',
@@ -127,7 +139,4 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   addButtonText: { fontSize: 28, color: '#FFFFFF', marginTop: -2 },
-
-       statsLink: { position: 'absolute', top: 36, right: 16 },
-     statsLinkText: { fontFamily: fonts.body, fontSize: 12, letterSpacing: 1.5, color: colors.text, textDecorationLine: 'underline' },
 });
